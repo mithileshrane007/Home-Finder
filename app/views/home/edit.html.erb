@@ -1,0 +1,415 @@
+		<%= render 'layouts/header'%>
+
+		<%= render 'layouts/sidebar'%>
+
+		<div id="main" role="main">
+
+			<!-- RIBBON -->
+			<div id="ribbon">
+
+			
+				<!-- breadcrumb -->
+				<ol class="breadcrumb">
+					<li><a class="link" href="/home/index/">Properties</a></li><li>Edit Property</li>
+				</ol>
+				<!-- end breadcrumb -->
+
+				<!-- You can also add more buttons to the
+				ribbon for further usability
+
+				Example below:
+
+				<span class="ribbon-button-alignment pull-right">
+				<span id="search" class="btn btn-ribbon hidden-xs" data-title="search"><i class="fa-grid"></i> Change Grid</span>
+				<span id="add" class="btn btn-ribbon hidden-xs" data-title="add"><i class="fa-plus"></i> Add</span>
+				<span id="search" class="btn btn-ribbon" data-title="search"><i class="fa-search"></i> <span class="hidden-mobile">Search</span></span>
+				</span> -->
+
+			</div>
+			<!-- END RIBBON -->
+
+			<!-- MAIN CONTENT -->
+			<div id="content">
+
+				<div class="row">
+					<div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
+						<h1 class="page-title txt-color-blueDark">
+							<i class="fa fa-home fa-fw "></i> 
+								Properties 
+							<span>> 
+								Edit Property
+							</span>
+						</h1>
+					</div>			
+				</div>
+
+				
+				<!-- widget grid -->
+				<section id="widget-grid" class="">
+				
+				
+				
+					<!-- START ROW -->
+				
+					<div class="row">
+				
+						<!-- NEW COL START -->
+						<article class="col-xs-12 col-sm-12 col-md-10 col-lg-10">
+				
+							<!-- Widget ID (each widget will need unique ID)-->
+							<div class="jarviswidget" id="wid-id-1" data-widget-colorbutton="false"
+								data-widget-editbutton="false"
+								data-widget-togglebutton="false"
+								data-widget-deletebutton="false"
+								data-widget-fullscreenbutton="false"
+								data-widget-custombutton="false"
+								data-widget-collapsed="false"
+								data-widget-sortable="false">
+								<!-- widget options:
+								usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
+				
+								data-widget-colorbutton="false"
+								data-widget-editbutton="false"
+								data-widget-togglebutton="false"
+								data-widget-deletebutton="false"
+								data-widget-fullscreenbutton="false"
+								data-widget-custombutton="false"
+								data-widget-collapsed="true"
+								data-widget-sortable="false"
+				
+								-->
+								<header>
+									<span class="widget-icon"> <i class="fa fa-plus"></i> </span>
+									<h2>Edit Home Form</h2>
+								</header>
+				
+								<!-- widget div-->
+								<div>
+				
+									<!-- widget edit box -->
+									<div class="jarviswidget-editbox">
+										<!-- This area used as dropdown edit box -->
+				
+									</div>
+									<!-- end widget edit box -->
+				
+									<!-- widget content -->
+									<div class="widget-body no-padding">
+				
+										<form class="smart-form" id="campaign_form" action="/home/edit/<%= @home.id %>" method="POST" enctype='multipart/form-data'>
+											<%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+											<fieldset>
+												<section>
+													<label class="label">Address</label>
+													<label class="input">
+														<input type="text" name="address" value="<%= @home.address %>">
+													</label>
+												</section>
+
+												<section>
+													<label class="label" >Type</label>
+													<label class="select">
+														<select name="home_type">
+															<option value="">&nbsp;&nbsp;Select Type</option>
+															
+															<option value="Single-Family Home" <% if @home.home_type == 'Single-Family Home' %>selected="selected"<% end %>>&nbsp;&nbsp;Single-Family Home</option>
+															<option value="Condo" <% if @home.home_type == 'Condo' %>selected="selected"<% end %>>&nbsp;&nbsp;Condo</option>
+															<option value="Townhouse" <% if @home.home_type == 'Townhouse' %>selected="selected"<% end %>>&nbsp;&nbsp;Townhouse</option>
+															<option value="Coop" <% if @home.home_type == 'Coop' %>selected="selected"<% end %>>&nbsp;&nbsp;Coop</option>
+															<option value="Apartment" <% if @home.home_type == 'Apartment' %>selected="selected"<% end %>>&nbsp;&nbsp;Apartment</option>
+															<option value="Loft" <% if @home.home_type == 'Loft' %>selected="selected"<% end %>>&nbsp;&nbsp;Loft</option>
+															<option value="TIC" <% if @home.home_type == 'TIC' %>selected="selected"<% end %>>&nbsp;&nbsp;TIC</option>
+															<option value="Farm/Ranch" <% if @home.home_type == 'Farm/Ranch' %>selected="selected"<% end %>>&nbsp;&nbsp;Farm/Ranch</option>
+															<option value="Lot/Land" <% if @home.home_type == 'Lot/Land' %>selected="selected"<% end %>>&nbsp;&nbsp;Lot/Land</option>
+															<option value="Multi-Family" <% if @home.home_type == 'Multi-Family' %>selected="selected"<% end %>>&nbsp;&nbsp;Multi-Family</option>
+															<option value="Investment" <% if @home.home_type == 'Investment' %>selected="selected"<% end %>>&nbsp;&nbsp;Investment</option>
+														</select> </label>
+												</section>
+
+												<section>
+													<div class="form-group">
+														<label class="label">Home Start Date</label>
+														<div class="input-group">
+															<input type="text" name="open_house_date" placeholder="" class="form-control datepicker" data-dateformat="mm/dd/yy" value="<%= @home.open_house_date.strftime("%m/%d/%Y") %>">
+															<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+														</div>
+													</div>
+												</section>
+
+												<section>
+													<div class="form-group">
+														<label>Start Time</label>
+														<div class="input-group">
+															<input class="form-control" id="start_timepicker" type="text" placeholder="Select time" name="open_house_start_time" value="<%= @home.open_house_start_time.strftime("%I:%M %p") %>">
+															<span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
+														</div>
+													</div>
+											  </section>
+
+												<section>
+													<div class="form-group">
+														<label>End Time</label>
+														<div class="input-group">
+															<input class="form-control" id="end_timepicker" type="text" placeholder="Select end time" name="open_house_end_time" value="<%= @home.open_house_end_time.strftime("%I:%M %p") %>">
+															<span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
+														</div>
+													</div>
+												</section>
+
+												<section>
+													<label class="label">Price</label>
+													<label class="input">
+														<input type="text" name="price" value="<%= @home.price %>">
+													</label>
+												</section>
+
+												<section>
+													<label class="label">For Sale</label>
+													<label class="select">
+														<select  name="for_sale" value="<%= @home.for_sale %>">
+															<option value="true" <% if @home.for_sale %>selected="selected"<% end %>>&nbsp;&nbsp;Yes</option>
+															<option value="false" <% if not @home.for_sale%>selected="selected"<% end %>>&nbsp;&nbsp;No</option>
+														</select> <i></i> </label>
+												</section>
+
+												<section>
+													<label class="label">Beds</label>
+													<label class="input">
+														<input type="number" min="0" name="beds" value="<%= @home.beds %>">
+													</label>
+												</section>
+
+												<section>
+													<label class="label">Baths</label>
+													<label class="input">
+														<input type="number" min="0" name="baths" value="<%= @home.baths %>">
+													</label>
+												</section>
+
+
+											</fieldset>
+										
+											<footer>
+												<button type="submit" class="btn btn-primary">
+													Submit
+												</button>
+											</footer>
+										</form>
+				
+									</div>
+									<!-- end widget content -->
+				
+								</div>
+								<!-- end widget div -->
+				
+							</div>
+							<!-- end widget -->
+				
+						</article>
+						<!-- END COL -->
+			
+					</div>
+				
+					<!-- END ROW -->
+				
+				</section>
+				<!-- end widget grid -->
+
+
+			</div>
+			<!-- END MAIN CONTENT -->
+
+		</div>
+		<!-- END MAIN PANEL -->
+
+		<!-- PAGE FOOTER -->
+		<div class="page-footer">
+			<div class="row">
+				<div class="col-xs-12 col-sm-6">
+					<span class="txt-color-white">DropTokyo © 2016</span>
+				</div>
+			</div>
+		</div>
+		<!-- END PAGE FOOTER -->
+
+		<style>
+			.error{	
+				color: red;
+			}
+		</style>
+		<!-- END SHORTCUT AREA -->
+
+		<!--================================================== -->
+
+		<!-- PACE LOADER - turn this on if you want ajax loading to show (caution: uses lots of memory on iDevices)-->
+		<script data-pace-options='{ "restartOnRequestAfter": true }' src="/assets/js/plugin/pace/pace.min.js"></script>
+
+		<!-- Link to Google CDN's jQuery + jQueryUI; fall back to local -->
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+		<script>
+			if (!window.jQuery) {
+				document.write('<script src="/assets/js/libs/jquery-2.1.1.min.js"><\/script>');
+			}
+		</script>
+
+		<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+		<script>
+			if (!window.jQuery.ui) {
+				document.write('<script src="/assets/js/libs/jquery-ui-1.10.3.min.js"><\/script>');
+			}
+		</script>
+
+		<!-- IMPORTANT: APP CONFIG -->
+		<script src="/assets/js/app.config.js"></script>
+
+		<!-- JS TOUCH : include this plugin for mobile drag / drop touch events-->
+		<script src="/assets/js/plugin/jquery-touch/jquery.ui.touch-punch.min.js"></script> 
+
+		<!-- BOOTSTRAP JS -->
+		<script src="/assets/js/bootstrap/bootstrap.min.js"></script>
+
+		<!-- CUSTOM NOTIFICATION -->
+		<script src="/assets/js/notification/SmartNotification.min.js"></script>
+
+		<!-- JARVIS WIDGETS -->
+		<script src="/assets/js/smartwidgets/jarvis.widget.min.js"></script>
+
+		<!-- EASY PIE CHARTS -->
+		<script src="/assets/js/plugin/easy-pie-chart/jquery.easy-pie-chart.min.js"></script>
+
+		<!-- SPARKLINES -->
+		<script src="/assets/js/plugin/sparkline/jquery.sparkline.min.js"></script>
+
+		<!-- JQUERY VALIDATE -->
+		<script src="/assets/js/plugin/jquery-validate/jquery.validate.min.js"></script>
+
+		<!-- JQUERY MASKED INPUT -->
+		<script src="/assets/js/plugin/masked-input/jquery.maskedinput.min.js"></script>
+
+		<!-- JQUERY SELECT2 INPUT -->
+		<script src="/assets/js/plugin/select2/select2.min.js"></script>
+
+		<!-- JQUERY UI + Bootstrap Slider -->
+		<script src="/assets/js/plugin/bootstrap-slider/bootstrap-slider.min.js"></script>
+
+		<!-- browser msie issue fix -->
+		<script src="/assets/js/plugin/msie-fix/jquery.mb.browser.min.js"></script>
+
+		<!-- FastClick: For mobile devices -->
+		<script src="/assets/js/plugin/fastclick/fastclick.min.js"></script>
+
+		<!--[if IE 8]>
+
+		<h1>Your browser is out of date, please update your browser by going to www.microsoft.com/download</h1>
+
+		<![endif]-->
+
+		<!-- MAIN APP JS FILE -->
+		<script src="/assets/js/app.min.js"></script>
+
+		<!-- ENHANCEMENT PLUGINS : NOT A REQUIREMENT -->
+		<!-- Voice command : plugin -->
+		<script src="/assets/js/speech/voicecommand.min.js"></script>
+
+		<!-- SmartChat UI : plugin -->
+		<script src="/assets/js/smart-chat-ui/smart.chat.ui.min.js"></script>
+		<script src="/assets/js/smart-chat-ui/smart.chat.manager.min.js"></script>
+		<script src="/assets/js/plugin/bootstrap-timepicker/bootstrap-timepicker.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/js/jasny-bootstrap.min.js"></script>
+
+		
+		<!-- PAGE RELATED PLUGIN(S) 
+		<script src="..."></script>-->
+
+		
+
+		<script type="text/javascript">
+		
+		// DO NOT REMOVE : GLOBAL FUNCTIONS!
+		
+		$(document).ready(function() {
+			
+			pageSetUp();
+
+	   	$('#start_timepicker').timepicker();
+	   	$('#end_timepicker').timepicker();
+			$('#campaign_form').validate({
+            
+            rules: {
+                address: {
+                 
+                  required: true
+                    
+                },
+                type:{
+                	required : true
+                },
+               
+                open_house_date:{
+                	required: true
+                },
+                open_house_start_time:{
+                	required: true
+                },
+	              open_house_end_time: {
+	               	required : true
+	              }, 
+	              price: {
+	               	required : true,
+	               	number : true
+	              },
+	              baths: {
+	               	required : true
+
+	              },
+	              beds: {
+	               	required : true
+	  
+	              }  
+	              
+            },
+            messages: {
+                
+               
+                address: {
+                 
+                  required: 'This field is required'
+                    
+                },
+                type:{
+                	required : 'This field is required'
+                },
+               
+                open_house_date:{
+                	required: 'This field is required'
+                },
+                open_house_start_time:{
+                	required: 'This field is required'
+                },
+	              open_house_end_time: {
+	               	required : 'This field is required'
+	              }, 
+	              price: {
+	               	required : 'This field is required',
+	               	number : 'Please enter number only'
+	              },
+	              baths: {
+	               	required : 'This field is required'
+
+	              },
+	              beds: {
+	               	required : 'This field is required'
+	  
+	              } 
+                
+              
+            },
+          
+            
+        
+        });
+
+		
+		})
+
+		</script>
